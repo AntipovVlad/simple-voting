@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/voting_list.css" %} >
+    <link rel="stylesheet" href={% static "css/profile.css" %} >
+    <link rel="stylesheet" href={% static "css/fonts.css" %} >
+    <script href={% static "js/bootstrap.js" %} ></script>
+</head>
+<body>
+{% include "header.html" %}
+
+<div id="main_profile">
+    <div class="container" >
+    <div class="profile-pane ">
+    <div class="column  column--alpha" style = "width: 900px; height: 500px;">
+    <!------------------------------------ПРОСМОТР ПРОФИЛЯ------------------------------------------------>
+    <div id="show_profile" style="display: block;" >
+        <div class="profile-pane__header" style="padding-top: 40px; padding-left: 50px;">
+            <img class="profile-pane__header__avatar" src="{{pic_url}}" style = "width: 190px; height: 190px;">
+            <p class="profile-pane__header__name" >{{first_name}} {{last_name}}</p> <!---------Ника---->
+            <p class="profile-pane__header__username" >
+                <svg class="bi bi-at" width="1.5em" height="1.5em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M15.106 9.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V7.206h-1.032v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907s-.601 1.914-1.538 1.914c-.895 0-1.442-.725-1.442-1.914z" clip-rule="evenodd"></path>
+                </svg>
+            {{username}}</p> <!---------Имени и Фамилии----->
+
+            <div class="profile-pane__new-tweet" style="padding-top: 80px;">
+                <div style="margin-left: 210px;">
+                    <p class="profile-pane__header__bio">Bio</p>
+                    <p style="padding-left: 20px;">
+                        <svg class="bi bi-chevron-compact-left" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.224 3.553a.5.5 0 01.223.67L8.56 10l2.888 5.776a.5.5 0 11-.894.448l-3-6a.5.5 0 010-.448l3-6a.5.5 0 01.67-.223z" clip-rule="evenodd"></path>
+                        </svg>
+                    {{bio}} <!---------отображение био----->
+                        <svg class="bi bi-chevron-compact-right" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8.776 3.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L11.44 10 8.553 4.224a.5.5 0 01.223-.671z" clip-rule="evenodd"></path>
+                        </svg>
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="profile-pane__profile-summary" style="height: 105px; width: 100%">
+          <ul style="height: 105px; width: 100%;">
+          <li style="padding-top: 15px;">
+              <a style="cursor: default" href="javascript:void(0);">
+                <dl>
+                  <dd>{{ joined }}</dd> <!---------отображение даты регистрации----->
+                  <dt>Registration</dt>
+                </dl>
+              </a>
+            </li>
+            <li>
+              <a style="cursor: default" href="javascript:void(0);">
+                <dl>
+                  <dd>{{count}}</dd>  <!---------отображение кол-ва созданных этим человеком голосований----->
+                  <dt>Created votings</dt>
+                </dl>
+              </a>
+            </li>
+            <li>
+              <a style="cursor: default" href="javascript:void(0);">
+                <dl>
+                  <dd>{{casted_votes}}</dd> <!---------кол-во отданных голосов----->
+                  <dt>Casted votes</dt>
+                </dl>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+    </div>
+    {% if me %}
+      <!-------------------------------------------------РЕДАКТИРОВАНИЕ ПРОФИЛЯ------------------------------->
+    <form method="POST">
+        {% csrf_token %}
+        <div id="edit_profile" style="display: none;">
+            <div class="profile-pane__header" style="padding-top: 40px; padding-left: 50px; height: 465px">
+                <img class="profile-pane__header__avatar" src="{{pic_url}}" style = "width: 190px; height: 190px;">
+                <p class="profile-pane__header__edit" >Enter your name and surname</p>
+                <div class="profile-pane__new-name">
+                <input style="width: 240px;" type="text" placeholder="Name" name="Name"> <!---------Ввод имени----->
+                <input style="width: 240px;" type="text" placeholder="Surname" name="Surname"> <!---------Ввод фамилии----->
+                </div>
+
+                <!--<p class="profile-pane__header__username" style="margin-top: 30px;">
+                    <svg class="bi bi-at" width="1.5em" height="1.5em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M15.106 9.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V7.206h-1.032v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907s-.601 1.914-1.538 1.914c-.895 0-1.442-.725-1.442-1.914z" clip-rule="evenodd"></path>
+                    </svg>
+                joshnh</p>-->
+                <div style="display: inline-block; margin-right: 200px; width: 50%">
+                    <p class="profile-pane__header__username" style="margin-top: 10px;">Upload profile picture </p>
+                   <div class="input-group mb-3 profile-pane__new-link">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Link</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="pic_url">
+                    </div> <!---------ссылка на изображение (пока можно не использовать) TODO: Посмотри, Игорь. ----->
+                </div>
+
+                <div class="profile-pane__new-tweet" style="padding-top: 20px; display: inline-block; width: 90%">
+                    <div style="margin-left: 20px;">
+                        <p class="profile-pane__header__bio">Bio</p>
+                        <input style="width: 50%; height: 50px;" type="text" placeholder="Bio" name="Bio"> <!---------Ввод био--TODO: Тут Полина вместо input написала textarea, но это не работает. Посмотри, как лучше.--->
+                        <br>
+                    </div>
+                </div>
+                <button id="save_btn" type="submit" class="btn btn-info" style="display: inline-block; margin-top: 50px; background-color: #516ca9">Save</button>
+            </div> <!------------------КНОПКА СОХРАНЕНИЯ----------------------------------->
+          </div>
+      </form>
+    {% endif %}
+      <!-------------------------------------------------ОТОБРАЖЕНИЕ СОБСТВЕННЫХ ГОЛОСОВАНИЙ---------------------------------->
+    <div id="show_votings_profile" style="display: none;">
+        <div class="profile-pane__header" style="padding-top: 40px; padding-left: 50px; height: 465px; position: relative; overflow-y: scroll;">
+            <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+            <p class="profile-pane__header__edit" >Created votings</p>
+            <!---------------- вот здесь идет отображение, предыдущие дивы не трогать---->
+              <ul>
+              {% for i in your_voting%}
+                <li>
+                  <a href="/voting/{{i.0}}" >{{i.1}}</a>
+                </li>
+              {% endfor %}
+              </ul>
+            <!---------------- вот здесь заканчивается отображение---->
+            </div>
+        </div>
+    </div>
+
+      <!-------------------------------------------------ОТОБРАЖЕНИЕ ОТДАННЫХ ГОЛОСОВ---------------------------------->
+    <div id="show_voices_profile" style="display: none;">
+        <div class="profile-pane__header" style="padding-top: 40px; padding-left: 50px; height: 465px; position: relative; overflow-y: scroll;">
+            <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+            <p class="profile-pane__header__edit" >Your casted votes</p>
+            <!---------------- вот здесь идет отображение, предыдущие дивы не трогать---->
+              <ul>
+              {% for i in all_voting%}
+                <li>
+                  <a href="/voting/{{i.0}}" >{{i.1}}</a>
+                </li>
+              {% endfor %}
+              </ul>
+            <!---------------- вот здесь заканчивается отображение---->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+      <!-------------------------------------------------КНОПКИ ПЕРЕКЛЮЧЕНИЯ----------------------------------->
+      <div class="column  column--beta" style="height: 300px; width: 80px">
+        <div class="profile-pane__shortcuts" style="height: 100%;">
+          <ul class="ull" style="padding-left: 0px; width: 100%; height: 100%">
+            <li id="first_li" class="list notification" >
+              <a id="profile_btn" href="javascript:void(0);">
+              <svg class="bi bi-person-fill" width="1.75em" height="1.75em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M5 16s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H5zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+              </svg>
+                </a>
+            </li>
+            {% if me %}
+            <li id="second_li" class="list">
+              <a id="edit_btn" href="javascript:void(0);">
+              <svg class="bi bi-tools" width="1.75em" height="1.75em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 3l1-1 3.081 2.2a1 1 0 01.419.815v.07a1 1 0 00.293.708L12.5 11.5l.914-.305a1 1 0 011.023.242l3.356 3.356a1 1 0 010 1.414l-1.586 1.586a1 1 0 01-1.414 0l-3.356-3.356a1 1 0 01-.242-1.023l.305-.914-5.707-5.707a1 1 0 00-.707-.293h-.071a1 1 0 01-.814-.419L2 3zm11.354 9.646a.5.5 0 00-.708.708l3 3a.5.5 0 00.708-.708l-3-3z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M17.898 4.223a3.003 3.003 0 01-3.679 3.674L7.878 14.15a3 3 0 11-2.027-2.027l6.252-6.341a3 3 0 013.675-3.68l-2.142 2.142L14 6l1.757.364 2.141-2.141zm-13.37 9.019L5 13l.471.242.529.026.287.445.445.287.026.529L7 15l-.242.471-.026.529-.445.287-.287.445-.529.026L5 17l-.471-.242L4 16.732l-.287-.445L3.268 16l-.026-.529L3 15l.242-.471.026-.529.445-.287.287-.445.529-.026z" clip-rule="evenodd"></path>
+              </svg>
+              </a>
+            </li>
+            {% endif %}
+            <li id="third_li" class="list ">
+              <a id="show_votings_btn" href="javascript:void(0);">
+              <svg class="bi bi-pencil" width="1.75em" height="1.75em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M13.293 3.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM14 4l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M14.146 8.354l-2.5-2.5.708-.708 2.5 2.5-.708.708zM5 12v.5a.5.5 0 00.5.5H6v.5a.5.5 0 00.5.5H7v.5a.5.5 0 00.5.5H8v-1.5a.5.5 0 00-.5-.5H7v-.5a.5.5 0 00-.5-.5H5z" clip-rule="evenodd"></path>
+              </svg>
+              </a>
+            </li>
+<!--            TODO: ПРОСМОТР ОПРОСОВ ЗА КОТОРЫЕ ТЫ ПРОГОЛОСОВАЛ-->
+            <li id="fourth_li" class="list">
+              <a id="show_voices_btn" href="javascript:void(0);">
+              <svg class="bi bi-bar-chart" width="1.75em" height="1.75em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M6 13H4v3h2v-3zm5-4H9v7h2V9zm5-5h-2v12h2V4zm-2-1a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2zM8 9a1 1 0 011-1h2a1 1 0 011 1v7a1 1 0 01-1 1H9a1 1 0 01-1-1V9zm-5 4a1 1 0 011-1h2a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z" clip-rule="evenodd"></path>
+              </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+</body>
+
+<script>
+
+if(document.getElementById('save_btn')){
+    save_btn.addEventListener('click', function () {
+        show_profile.style.display = 'block';
+        edit_profile.style.display = 'none';
+
+        let first = document.getElementById("first_li");
+        let second = document.getElementById("second_li");
+
+        first.classList.add("notification");
+        second.classList.remove("notification");
+    });
+}
+
+
+profile_btn.addEventListener('click', function () {
+        show_profile.style.display = 'block';
+        if(document.getElementById('save_btn')){
+            edit_profile.style.display = 'none';
+            let second = document.getElementById("second_li");
+            second.classList.remove("notification");
+        }
+        show_votings_profile.style.display = 'none';
+        show_voices_profile.style.display = 'none';
+
+        let first = document.getElementById("first_li");
+        let third = document.getElementById("third_li");
+        let fourth = document.getElementById("fourth_li");
+
+        first.classList.add("notification");
+        third.classList.remove("notification");
+        fourth.classList.remove("notification");
+    });
+
+if(document.getElementById('save_btn')){
+    edit_btn.addEventListener('click', function () {
+            show_profile.style.display = 'none';
+            if(document.getElementById('save_btn')){
+                edit_profile.style.display = 'block';
+                let second = document.getElementById("second_li");
+                second.classList.add("notification");
+            }
+            show_votings_profile.style.display = 'none';
+            show_voices_profile.style.display = 'none';
+
+            let first = document.getElementById("first_li");
+            let third = document.getElementById("third_li");
+            let fourth = document.getElementById("fourth_li");
+
+            first.classList.remove("notification");
+            third.classList.remove("notification");
+            fourth.classList.remove("notification");
+        });
+}
+show_votings_btn.addEventListener('click', function () {
+        show_profile.style.display = 'none';
+        if(document.getElementById('save_btn')){
+            edit_profile.style.display = 'none';
+            let second = document.getElementById("second_li");
+            second.classList.remove("notification");
+        }
+        show_votings_profile.style.display = 'block';
+        show_voices_profile.style.display = 'none';
+
+        let first = document.getElementById("first_li");
+        let third = document.getElementById("third_li");
+        let fourth = document.getElementById("fourth_li");
+
+        first.classList.remove("notification");
+        third.classList.add("notification");
+        fourth.classList.remove("notification");
+    });
+
+show_voices_btn.addEventListener('click', function () {
+        show_profile.style.display = 'none';
+        if(document.getElementById('save_btn')){
+            edit_profile.style.display = 'none';
+            let second = document.getElementById("second_li");
+            second.classList.remove("notification");
+        }
+        show_votings_profile.style.display = 'none';
+        show_voices_profile.style.display = 'block';
+
+        let first = document.getElementById("first_li");
+        let third = document.getElementById("third_li");
+        let fourth = document.getElementById("fourth_li");
+
+        first.classList.remove("notification");
+        third.classList.remove("notification");
+        fourth.classList.add("notification");
+    });
+
+
+</script>
+</html>

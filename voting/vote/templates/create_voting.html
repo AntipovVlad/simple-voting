@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/index_page.css" %} >
+    <link rel="stylesheet" href={% static "css/create_voting.css" %} >
+
+</head>
+<body>
+
+
+{% include "header.html" %}
+
+<form method="POST" id="OUR_FORM">
+
+    {% csrf_token %}
+
+
+        <div class="container edit">
+
+          <div class="row">
+            <div class="col-12 text-center" id = "q-input">
+
+                    <input id="input" type="text" class="q-input form-control shadow p-3  bg-white rounded" placeholder="Your question" aria-label="Имя пользователя" aria-describedby="basic-addon1">
+
+            </div>
+          </div>
+
+          <div class="row justify-content-md-center">
+
+            <div class="col-12 text-center m-4">
+                <button style="opacity: 0" id="ben-button" type="button" class="btn btn-primary btn-lg btn-sub mx-auto btn-begin" onclick="begin()">Start</button>
+
+                        <div class="row row-cols-2 row-cols-md-3" id="vote_tbl" style="display:none;">
+
+                          <div class="col padding-0" >
+                            <div class="card bg-light card-vng">
+                                <a href="#" class="btn btn-fix" onclick="add_one_vot1()">
+                                    <div class="card-body">
+                                        <svg class="bi bi-list-ul" width="10em" height="10em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M7 13.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">Poll with only one answer</p>
+                                    </div>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="col padding-0" >
+                            <div class="card bg-light card-vng">
+                                <a href="#" class="btn btn-fix" onclick="add_one_vot2()">
+                                    <div class="card-body">
+                                        <svg class="bi bi-list-task" width="10em" height="10em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M4 4.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5V5a.5.5 0 00-.5-.5H4zM5 5H4v1h1V5z" clip-rule="evenodd"></path>
+                                          <path d="M7 5.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM7.5 9a.5.5 0 000 1h9a.5.5 0 000-1h-9zm0 4a.5.5 0 000 1h9a.5.5 0 000-1h-9z"></path>
+                                          <path fill-rule="evenodd" d="M3.5 9a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5V9zM4 9h1v1H4V9zm0 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5H4zm1 .5H4v1h1v-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">Poll with various answers</p>
+                                    </div>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="col padding-0">
+                            <div class="card bg-light card-vng">
+<!--                                <a href="#" class="btn btn-fix">-->
+                                    <div class="card-body">
+                                        <svg class="bi bi-lock-fill"  width="10rem" height="10rem" viewBox="0 0 20 20" fill="#cecece" xmlns="http://www.w3.org/2000/svg">
+                                          <rect width="11" height="9" x="4.5" y="8" rx="2"></rect>
+                                          <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">We will create something interesting</p>
+                                    </div>
+<!--                                </a>-->
+                            </div>
+                          </div>
+                          <div class="col padding-0">
+                            <div class="card bg-light card-vng">
+<!--                                <a href="#" class="btn btn-fix">-->
+                                    <div class="card-body">
+                                        <svg class="bi bi-lock-fill"  width="10rem" height="10rem" viewBox="0 0 20 20" fill="#cecece" xmlns="http://www.w3.org/2000/svg">
+                                          <rect width="11" height="9" x="4.5" y="8" rx="2"></rect>
+                                          <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">We will create something interesting</p>
+                                    </div>
+<!--                                </a>-->
+                            </div>
+                          </div>
+                        <div class="col padding-0">
+                            <div class="card bg-light card-vng">
+<!--                                <a href="#" class="btn btn-fix">-->
+                                    <div class="card-body">
+                                        <svg class="bi bi-lock-fill"  width="10rem" height="10rem" viewBox="0 0 20 20" fill="#cecece" xmlns="http://www.w3.org/2000/svg">
+                                          <rect width="11" height="9" x="4.5" y="8" rx="2"></rect>
+                                          <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">We will create something interesting</p>
+                                    </div>
+<!--                                </a>-->
+                            </div>
+                          </div>
+                            <div class="col padding-0">
+                            <div class="card bg-light card-vng">
+<!--                                <a href="#" class="btn btn-fix">-->
+                                    <div class="card-body">
+                                        <svg class="bi bi-lock-fill"  width="10rem" height="10rem" viewBox="0 0 20 20" fill="#cecece" xmlns="http://www.w3.org/2000/svg">
+                                          <rect width="11" height="9" x="4.5" y="8" rx="2"></rect>
+                                          <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="card-text">We will create something interesting</p>
+                                    </div>
+<!--                                </a>-->
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                    </div>
+
+
+        </div>
+
+            <div class="row justify-content-md-left" style="display: none" id="first_ct">
+                <div class="col-7 text-center" style="margin: 5px 0 0 20px;" id="div_col_v1">
+                    <ul class="list-group list-group-flush" id = "ul_v1">
+
+                      <li class="list-group-item text-left" id = "li_v1">
+                          <div style="display:flex; font-size: 1.7rem;" id = "div_v1" >
+                              <span class="text-monospace text-muted list_answ" id="span_v1">1.</span>
+                              <input type="text" class="form-control" placeholder="Write your answer" id = "input_v1">
+                          </div>
+                      </li>
+
+                    </ul>
+                </div>
+
+
+
+
+                <div class="col text-center" style="margin: 5px 20px 0 0px; background-color: #efefef" id="all_btn">
+
+                    <button type="button" class="btn btn-info text-monospace" onclick = create_pole_1() style="margin: 20px 0 20px 0; width: 250px; height: 60px;" id="vote_btn_1">New answer</button>
+
+                    <button type="button" class="btn btn-danger text-monospace" onclick = create_vote() style="margin: 20px 0 20px 0; width: 250px; height: 60px;" id="vote_btn_2" active>Create this voting</button>
+
+                </div>
+            </div>
+
+
+
+    </div>
+</form>
+
+
+
+<!--<div class="otladchik">-->
+<!--    Нужно исправить: <br>-->
+<!--    0.Я на связи, если что то по части цветашрифта - пишите все. Все остальное я посмотрю в конце доработки)))<br>-->
+<!--    1.Нужно убрать обводку при нажатии кнопки<br>-->
+<!--    2.Нужно сделать плавное появление кнопки(https://qps.ru/57EXd)<br>-->
+<!--    3.Сделать кнопку "начать" красивой<br>-->
+<!--    4.После нажатия на кнопку "начать" шрифт должен увел. или умен.<br>-->
+<!--    5.При нажатии на создание опроса с 1 в.о не должна появл. обводка<br>-->
+<!--    6.ДОБАВИТЬ ФУНКЦИОНАЛ(возможно придется переделать что-то с 0)<br>-->
+<!--    7.Чуть чуть дизайна.<br>-->
+<!--    8.ВАЖНА РАБОТА СО ШРИФТАМИ!!!!!!!!!!!!!!-->
+<!--</div>-->
+
+
+
+
+<!--ЭТО БЫЛО ИЗНАЧАЛЬНО. С ЧЕГО НАЧИНАЛОСЬ!!!!!!!!-->
+<!--
+<input type="button" value="докинуть элементов" onclick="add()">
+
+<form method="POST" id="OUR_FORM">
+    {% csrf_token %}
+    <input type="text" name="question" placeholder="Ваш вопрос">
+    <p>Ваши варианты ответа:</p>
+    <input type="text" name="option1" placeholder="Ваш ответ">
+    <input type="hidden" name="count"  id="count" value="1">
+    <br>
+    <input type="submit" value="Добавить" id="add-button">
+</form>
+
+-->
+
+<script>
+
+/*---------------- Массив ответов и действие при нажатии  Создать опрос... отправка запроса!!!---------- */
+
+
+function create_vote(){
+    let form = document.getElementById("OUR_FORM");
+    for (let i = 1; i <= number; i++) {
+        let str = document.querySelector("#input_v" + i).value
+        if(str.replace(/^\s*/,'').replace(/\s*$/,'')!==""){
+            arr_ans.push(str.replace(/^\s*/,'').replace(/\s*$/,''));
+        }
+    }
+
+    console.log(arr_ans);
+
+    document.getElementById("ul_v1").remove();
+    document.getElementById("all_btn").remove();
+
+
+    let ul = document.createElement("ul");
+    ul.id = "ul_v1";
+    ul.classList.add("list-group", "list-group-flush");
+    ul.style.display = "none";
+
+    div_col_v1.append(ul);
+
+    let input = document.createElement("input");
+
+    input.type = "text";
+    input.name = "question";
+    input.value = question;
+
+    ul_v1.append(input);
+
+    for (let j = 1; j <= arr_ans.length; j++){
+        let input = document.createElement("input");
+
+        input.type = "text";
+        input.name = "option" + j;
+        input.value = arr_ans[j-1];
+
+        ul_v1.append(input);
+    }
+
+    let input_lenght = document.createElement("input");
+
+    input_lenght.type = "text";
+    input_lenght.name = "count";
+    input_lenght.value = arr_ans.length;
+
+    ul_v1.append(input_lenght);
+
+
+    let input_vote_mode = document.createElement("input");
+
+    input_vote_mode.type = "text";
+    input_vote_mode.name = "type";
+    input_vote_mode.value = CURRENT_VOTING_MODE;
+
+    ul_v1.append(input_vote_mode);
+
+    form.submit();
+}
+
+
+//<!--ЭТО БЫЛО ИЗНАЧАЛЬНО. С ЧЕГО НАЧИНАЛОСЬ!!!!!!!!-->
+///*----------------------- РАБОТАЕТ НО НЕ ИСПОЛЬЗУЕТСЯ ------------------------------ */
+//    function add(){
+//
+//    document.getElementById("add-button").remove();
+//
+//    let el = document.createElement("input");
+//    let bt = document.createElement("input");
+//    var br = document.createElement("br");
+//
+//    let count = document.getElementById("count");
+//    count.value = Number(count.value) + 1;
+//
+//    el.type ="text";
+//    el.name= "option"+count.value;
+//    el.placeholder="Ваш ответ";
+//
+//    bt.type = "submit"
+//    bt.value = "Добавить"
+//    bt.id = "add-button"
+//    let form = document.getElementById("OUR_FORM");
+//
+//    form.appendChild(el);
+//    form.appendChild(br)
+//    form.appendChild(bt);
+//
+//    }
+//
+//
+//
+//
+//
+//    function allert(){
+//        alert("ппппп");
+//    }
+//
+//
+/*----------------------- Переменные ------------------------------ */
+var arr_ans = [];
+var number = 1;
+var CURRENT_VOTING_MODE;
+/*----------------------- Появление кнопки при написании текста в инпут ------------------------------ */
+s_button=document.querySelector("#ben-button")
+s_input=document.querySelector("#input")
+s_input.addEventListener("input", function(){
+    if(this.value==="") return s_button.style.opacity = 0;
+    s_button.style.opacity = 1;
+});
+
+/*----------------------- Действие при нажатии на кнопку "начать" ------------------------------ */
+var question;
+
+function begin(){
+
+    question = document.getElementById('input').value;
+    let table = document.getElementById('vote_tbl');
+    console.log(question);
+
+    document.getElementById("input").remove();
+    document.getElementById("ben-button").remove();
+
+    var q_h = document.createElement("p");
+    q_h.classList.add("display-1");
+    q_h.classList.add("main-top-str");
+    q_h.name = "question";
+    q_h.innerHTML = question;
+
+
+    let form = document.getElementById("q-input");
+    console.log(form);
+    form.appendChild(q_h);
+    table.style.display = "flex";  //Нужно написать flex или none
+
+}
+
+
+/*----------------------- Создание создетеля опросов с 1 вар ответов ------------------------------ */
+
+
+function add_one_vot1(){
+    let table = document.getElementById('vote_tbl');
+    let first_ct = document.getElementById('first_ct');
+
+    CURRENT_VOTING_MODE = 1;
+    console.log(CURRENT_VOTING_MODE);
+
+    table.style.display = "none";
+    first_ct.style.display = "flex";
+}
+
+/*----------------------- Создание создетеля опросов с множ вар ответов ------------------------------ */
+
+
+function add_one_vot2(){
+    let table = document.getElementById('vote_tbl');
+    let second_ct = document.getElementById('first_ct');
+
+    CURRENT_VOTING_MODE = 2;
+    console.log(CURRENT_VOTING_MODE);
+
+    table.style.display = "none";
+    second_ct.style.display = "flex";
+}
+
+
+
+
+
+
+
+/*----------------------- Создание нового поля (с одним вариантом ответа) ---------------------------- */
+
+var sec_button = document.querySelector("#vote_btn_1");
+var sec_input = document.querySelector("#input_v1");
+
+
+function create_pole_1(){
+    number+=1;
+    let li = document.createElement("li");
+    let div = document.createElement("div");
+    let span = document.createElement("span");
+    let input = document.createElement("input");
+
+    li.classList.add("list-group-item", "text-left");
+    li.id = "li_v" + number;
+
+    div.style.cssText = "display:flex; font-size: 1.7rem";
+    div.id = "div_v" + number;
+
+    span.classList.add("text-monospace", "text-muted", "list_answ");
+    span.innerHTML = number + '.';
+    span.id = "span_v" + number;
+
+    input.classList.add("form-control");
+    input.placeholder = "Write your answer";
+    input.type="text";
+    input.id = "input_v" + number;
+
+    ul_v1.append(li);
+    li.prepend(div);
+    div.prepend(span);
+    div.append(input);
+
+}
+
+</script>
+
+</body>
+</html>

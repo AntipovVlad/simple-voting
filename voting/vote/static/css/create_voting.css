@@ -1,0 +1,60 @@
+p{
+    margin: 0;
+    border: 0
+
+}
+.q-input{
+    font-size:300%;
+    margin: 10% 0 5% 0;
+}
+
+.btn-begin{
+    width:200px;
+    height:75px;
+    transition: opacity 2s;
+}
+
+
+.main-top-str{
+    font-size: 5rem;
+    word-wrap: break-word;
+    margin: 4rem 0 2rem 0;
+}
+
+
+.otladchik{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    height: 40%;
+    background-color: #b2b2b2;
+}
+
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+
+.card-vng{
+    height: 15rem;
+}
+
+.list_answ{
+    margin: 0 5px 0 0;
+}
+
+/*-----------------------  при нажатии на поле вопроса есть задежка уберания плейсхолдера  ------------------------------ */
+input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+
+
+/*----------------------- цвет контура поля ввода вопроса  ------------------------------ */

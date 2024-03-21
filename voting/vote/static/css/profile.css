@@ -1,0 +1,221 @@
+
+
+.profile-pane {
+  background-color: #e3e3e3;
+  border-radius: .5em;
+  box-shadow: 0 0 0 .1em hsla(0,0%,0%,.1),
+              0 .1em .25em hsla(0,0%,0%,.25),
+              0 0 6em hsla(0,0%,100%,.25);
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 4.5em 0;
+  text-align: left;
+  vertical-align: top;
+}
+.column {
+  display: inline-block;
+  vertical-align: top;
+}
+.column--alpha {
+  border-right: 1px solid #c0c0c0;
+  margin-right: -.25em;
+  width: 18em;
+}
+.column--beta {
+  width: 3em;
+}
+.list {
+  list-style-type: none; /* Убираем маркеры */
+}
+.ull {
+  margin-left: 0; /* Отступ слева в браузере IE и Opera */
+  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+.profile-pane a {
+  color: #444;
+  text-decoration: none;
+  transition: .15s;
+}
+.profile-pane a:hover,
+.profile-pane a:focus {
+  color: #39c;
+}
+.profile-pane__header {
+  background-color: #eee;
+  border-bottom: 1px solid #d3d3d3;
+  border-radius: .5em 0 0 0;
+  box-shadow: inset 0 .1em 0 hsla(0,0%,100%,.25);
+}
+.profile-pane__header a {
+  display: block;
+  padding: .75em;
+}
+.profile-pane__header__avatar {
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 .1em hsla(0,0%,0%,.15);
+  float: left;
+  height: 3em;
+  margin-right: .75em;
+  width: 3em;
+  margin-right: 30px;
+}
+.profile-pane__header__name {
+  font-weight: bold;
+  font-size: 2.125em;
+  line-height: 1.333333333;
+  text-shadow: 0 .1em .1em hsla(0,0%,100%,.25);
+}
+.profile-pane__header__edit {
+  font-weight: bold;
+  font-size: 1.625em;
+  line-height: 1.333333333;
+  text-shadow: 0 .1em .1em hsla(0,0%,100%,.25);
+}
+.profile-pane__header__bio {
+  font-weight: bold;
+  font-size: 1.80em;
+  line-height: 1.333333333;
+  text-shadow: 0 .1em .1em hsla(0,0%,100%,.25);
+  color: #516ca9;
+}
+.profile-pane__header__username {
+  color: #888;
+  font-size: 1.275em;
+  font-style: italic;
+  line-height: 1.714285714;
+}
+.profile-pane__new-name {
+  background-color: #eee;
+  padding: .75em;
+}
+.profile-pane__new-name input {
+  border: 1px solid #aaa;
+  border-radius: .15em;
+  box-shadow: inset 0 .1em .5em hsla(0,0%,0%,.15),
+              0 -.1em 0 hsla(0,0%,100%,.25);
+  box-sizing: border-box;
+  color: #444;
+  font-family: 'Open Sans', sans-serif;
+  outline: 0;
+  padding: .5em .75em;
+  transition: .15s;
+  width: 100%;
+}
+.profile-pane__new-name input:focus {
+  border-color: #4ad;
+}
+.profile-pane__profile-summary {
+  background-color: #fff;
+}
+.profile-pane__profile-summary ul {
+  border-bottom: 1px solid #d3d3d3;
+  display: table;
+  width: 100%;
+}
+.profile-pane__profile-summary li {
+  border-left: 1px solid #d3d3d3;
+  display: table-cell;
+}
+.profile-pane__profile-summary a {
+  display: block;
+  padding: .425em .75em .375em;
+}
+.profile-pane__profile-summary li:first-child {
+  border-left: 0;
+}
+.profile-pane__profile-summary dd {
+  color: #444;
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.333333333;
+}
+.profile-pane__profile-summary dt {
+  color: #888;
+  font-size: .75em;
+  line-height: 2;
+  text-transform: uppercase;
+  transition: .15s;
+}
+.profile-pane__profile-summary a:hover dt,
+.profile-pane__profile-summary a:focus dt{
+  color: #39c;
+}
+.profile-pane__new-tweet {
+  background-color: #eee;
+  padding: .75em;
+}
+.profile-pane__new-tweet textarea {
+  border: 1px solid #aaa;
+  border-radius: .15em;
+  box-shadow: inset 0 .1em .5em hsla(0,0%,0%,.15),
+              0 -.1em 0 hsla(0,0%,100%,.25);
+  box-sizing: border-box;
+  color: #444;
+  font-family: 'Open Sans', sans-serif;
+  outline: 0;
+  padding: .5em .75em;
+  transition: .15s;
+  width: 60%;
+  height: 80px;
+}
+.profile-pane__new-tweet textarea:focus {
+  border-color: #4ad;
+}
+.profile-pane__new-link {
+  background-color: #eee;
+}
+.profile-pane__new-link input {
+  border: 1px solid #aaa;
+  border-radius: .15em;
+  box-shadow: inset 0 .1em .5em hsla(0,0%,0%,.15),
+              0 -.1em 0 hsla(0,0%,100%,.25) !important;
+  box-sizing: border-box;
+  color: #444;
+  font-family: 'Open Sans', sans-serif;
+  outline: 0;
+  padding: .5em .75em;
+  transition: .15s;
+  width: 100%;
+}
+.profile-pane__new-link input:focus {
+  border-color: #4ad !important;
+}
+.profile-pane__shortcuts a {
+  border-top: 1px solid #c3c3c3;
+  box-shadow: inset .25em 0 .25em -.25em hsla(0,0%,0%,.15),
+              inset 0 .1em 0 hsla(0,0%,100%,.25);
+  box-sizing: border-box;
+  display: block;
+  font-family: awesome;
+  line-height: 2.85em;
+  padding: .2em .15em 0 0;
+  text-align: center;
+  text-shadow: 0 .1em .1em hsla(0,0%,100%,.25);
+}
+.profile-pane__shortcuts li:first-child a {
+  border-radius: 0 .5em 0 0;
+  border-top: 0;
+}
+.profile-pane__shortcuts li:last-child a {
+  border-radius: 0 0 .5em 0;
+}
+.profile-pane__shortcuts .connect a {
+  font-family: sans-serif;
+  font-weight: bold;
+  line-height: 2.9em;
+  padding: 0 .15em .1em 0;
+}
+.profile-pane__shortcuts a:hover,
+.profile-pane__shortcuts a:focus {
+  background-color: #eee;
+}
+.profile-pane__shortcuts a:active {
+  background-color: #d9d9d9;
+  transition: 0s;
+}
+.profile-pane__shortcuts .notification a {
+  box-shadow: inset .25em 0 .25em -.25em hsla(0,0%,0%,.15),
+              inset .2em 0 0 hsla(200,60%,60%,.5),
+              inset 0 .1em 0 hsla(0,0%,100%,.25);
+}

@@ -1,0 +1,43 @@
+.quest-conteiner{
+    text-align: left;
+}
+
+.inline-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 13px;
+    color: #a5acb3;
+}
+
+.list_item{
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+}
+.quest_name{
+    color: #333;
+    overflow: hidden;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.2em;
+}
+.quest_author{
+    font-size: 15px;
+}
+.qest_a:visited{
+  color: #669;
+}
+.qest_a{
+  color: #333;
+}
+.small_count{
+    width: 100%;
+    text-align: center;
+    margin: 11px;
+}
+    .small_li_txt{
+        color: #b2bac2;
+        font-weight: bolder;
+    }

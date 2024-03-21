@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/showvoting.css" %} >
+</head>
+<body>
+{% include "header.html" %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+
+                {% if request.user.is_authenticated %}
+                <div class="dark-tbl shadow p-3 mb-5 bg-white rounded">
+                    <div class="form" id = "top">
+                        <form method="POST">
+                            {% csrf_token %}
+                          <h2 class="name_q">{{question}}</h2>
+                          <div class="info">
+                                <span>{{ author }}</span>
+                                <span>• {{ date }}</span>
+                                <span>• Multiple choice</span>
+                          </div>
+                            {% for option in voting %}
+                              <div class="inputGroup">
+                                <input id="option{{ option.0 }}" name="b_{{ option.0 }}" type="checkbox"/>
+                                <label for="option{{ option.0 }}">{{ option.1 }}</label>
+                              </div>
+                            {% endfor %}
+
+                            <button type="submit" onclick="poster({{start_id}}, {{count}});"  class ="btn btn-primary btn-lg btn-sub">Vote!</button>
+                            <input type="hidden" id="input" name="chosen_values">
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+
+                <div class="dark-tbl shadow p-3 mb-5 bg-white rounded">
+                    <div class="form">
+                          <h2 class="name_q">{{question}}</h2>
+                          <div class="info">
+                                <span>{{ author }}</span>
+                                <span>• {{ date }}</span>
+                                <span>• Multiple choice</span>
+                          </div>
+                            {% for option in voting %}
+                              <div class="inputGroup">
+                                <input id="v" name="b_{{ option.0 }}" type="checkbox" disabled/>
+                                <label for="v">{{ option.1 }}</label>
+                              </div>
+                            {% endfor %}
+                            <p>If you want to participate - you have to login or register</p>
+                             <a class="btn btn-outline-primary" href="/login/">Login / Register</a>
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+<script>
+        function poster(st, n){
+            console.log(st);
+            var s = "";
+            select_arr = [];
+            var current_n = 0;
+            for (let i = st; i <= st + n - 1; i++) {
+                let element = document.getElementById("option" + String(i));
+                if (element.checked) {
+                    s += String(i) + ' ';
+                    current_n++;
+                    console.log(i);
+                }
+            }
+            console.log(s);
+
+            var sub_inp = document.getElementById("input");
+            sub_inp.value = s;
+        }
+</script>
+
+</body>
+
+</html>

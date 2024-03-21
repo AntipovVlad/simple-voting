@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+    .big_logo{
+        font-size: 150px;
+        font-family: 'Roboto Mono', monospace;
+        color: rgba(0,0,0,.4);
+    }
+    .text_logo{
+        font-family: 'Roboto Mono', monospace;
+        color: rgba(0,0,0,.4);
+        margin: 100px;
+    }
+    .logo{
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -70%)
+    }
+
+    .btn{
+        margin-bottom: 15px;
+    }
+
+
+
+
+</style>
+{% include "header.html" %}
+<div class="row">
+    <div class="col-12 text-center logo">
+            <img class="big_logo" src="https://img.icons8.com/dusk/256/000000/test-passed.png"><br>
+            <span class="text_logo">Success!</span><br>
+            <span class="text_logo">You can see your question here.</span><br><br>
+
+            <a class="btn btn-outline-primary btn-lg" href="/voting_list/" class="text_logo">All votings</a><br>
+    </div>
+</div>
+</body>
+</html>

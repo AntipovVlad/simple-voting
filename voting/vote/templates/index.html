@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class=" wow-animation" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/style.css" %} >
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/index_page.css" %} >
+    <link rel="stylesheet" href={% static "css/button_up.css" %} >
+    <link rel="stylesheet" href={% static "css/fonts.css" %} >
+    <script href={% static "js/bootstrap.js" %} ></script>
+</head>
+<body>
+
+{% include "header.html" %}
+<button type="button" id="uup" class="putUp btn btn-outline-dark btn-lg">up</button>
+{% include "index_main.html" %}
+{% include "footer.html" %}
+
+<script>
+
+  window.addEventListener('scroll', function () {
+        "use strict";
+        if (window.pageYOffset >= 400) {
+            document.getElementById("uup").style.opacity = 1;
+        } else {
+            document.getElementById("uup").style.opacity = 0;
+        }
+    });
+
+    uup.addEventListener('click', function () {
+        window.scrollBy(0, -3000);
+    });
+
+</script>
+</body>
+</html>

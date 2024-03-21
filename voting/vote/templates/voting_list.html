@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>voting_list</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/voting_list.css" %} >
+    <script href={% static "js/bootstrap.js" %} ></script>
+
+  <style>
+        .link_edit{
+        color: black;
+        text-decoration: none;
+        }
+
+        .link_edit:hover{
+        color: blue;
+        text-decoration: none;
+        }
+
+  </style>
+</head>
+<body>
+<!--    {% for qi in questions%}-->
+<!--        <p>-->
+<!--            <a href="voting/{{qi.0}}">{{qi.1}}</a>-->
+<!--        </p>-->
+<!--    {% endfor %}-->
+{% include "header.html" %}
+    <div class="container">
+        <ul class="list-group list-group-flush">
+    {% for qi in data%}
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-10">
+                    <div class="quest-conteiner">
+                      <div class="quest">
+                          <div class="quest_author"><a class="link_edit" href="/profile/{{qi.2}}">@{{qi.2}}</a></div>
+                          <div class="quest_name">
+                              <a class="qest_a" href="/voting/{{qi.1}}">{{qi.0}}</a>
+                          </div>
+                          <ul class="quest_info inline-list">
+                              <li class="list_item">
+                                  <span>Creation date: {{qi.3}} </span>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-2">
+                    <div class="small_count">
+                      <div><span class="small_li_txt">{{qi.5}}</span></div>
+                      <div><span class="small_li_txt">votes</span></div>
+                    </div>
+                </div>
+              </div>
+            </li>
+    {% endfor %}
+          </ul>
+    </div>
+{% include "footer.html" %}
+</body>
+</html>

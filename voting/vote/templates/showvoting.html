@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} >
+    <link rel="stylesheet" href={% static "css/showvoting.css" %} >
+</head>
+<body>
+    <script>
+        function poster(n){
+            var v = document.getElementById("vi");
+            v.value = String(n);
+            v.innerHTML = String(n);
+            console.log(v);
+        }
+
+        window.addEventListener('scroll', function () {
+        "use strict";
+        if (window.pageYOffset >= 400) {
+            document.getElementById("uup").style.opacity = 1;
+        } else {
+            document.getElementById("uup").style.opacity = 0;
+        }
+    });
+
+    uup.addEventListener('click', function () {
+        window.scrollBy(0, -3000);
+    });
+
+    </script>
+    <!-- <button type="button" id="uup" class="putUp btn btn-outline-dark btn-lg">up</button>-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+
+<!--        <p>-->
+<!--            порядковый номер: {{id}}-->
+<!--        </p>-->
+<!--        <p>-->
+<!--            вопрос: {{question}}-->
+<!--        </p>-->
+
+<!--        {% for option in voting %}-->
+<!--        <li>-->
+<!--&lt;!&ndash;            <input type="radio" name="r" id="b_{{ option.0 }}" onchange="poster({{ option.0 }});">&ndash;&gt;-->
+<!--                {{ option.1 }}-->
+<!--            </input>-->
+<!--        </li>-->
+<!--        {% endfor %}-->
+
+<!--        <p>-->
+<!--&lt;!&ndash;            <input type="hidden" id="vi" name="chosen_values">&ndash;&gt;-->
+<!--        </p>-->
+<!--        <p>-->
+<!--            <a href="voting_list/"> <input type="submit" value="Отправить"></a>-->
+<!--        </p>-->
+
+<!--    </form>-->
+
+{% include "header.html" %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+                <div class="dark-tbl shadow p-3 mb-5 bg-white rounded">
+                    {% if request.user.is_authenticated %}
+                        <div class="form">
+                            <form method="POST">
+                                {% csrf_token %}
+                              <h2 class="name_q">{{question}}</h2>
+                              <div class="info">
+                                    <span>{{author}}</span>
+                                    <span>• {{date}}</span>
+                                    <span>• Single choice</span>
+                              </div>
+                                {% for option in voting %}
+                              <div class="inputGroup">
+                                <input name="r" type="radio" id="b_{{ option.0 }}" onchange="poster({{ option.0 }});"/>
+                                <label class="text-break" for="b_{{ option.0 }}">{{ option.1 }}</label>
+                              </div>
+                                {% endfor %}
+                                <p>
+                                    <input type="hidden" id="vi" name="chosen_values">
+                                </p>
+                             <button type="submit" class="btn btn-primary btn-lg btn-sub">Vote!</button>
+                            </form>
+                        </div>
+                    {% else %}
+                    <div class="form">
+                        <form method="GET">
+                              <h2 class="name_q">{{question}}</h2>
+                              <div class="info">
+                                    <span>{{author}}</span>
+                                    <span>• {{date}}</span>
+                                    <span>• Single choice</span>
+                              </div>
+                                {% for option in voting %}
+                              <div class="inputGroup">
+                                <input name="r" type="radio" id="b" onchange="poster({{ option.0 }});" disabled/>
+                                <label class="text-break" for="b">{{ option.1 }}</label>
+                              </div>
+                                {% endfor %}
+                                <p>
+                                </p>
+                            <p>If you want to participate - you have to login or register</p>
+                             <a class="btn btn-outline-primary" href="/login/">Login / Register</a>
+                            </form>
+                        </div>
+                    <div class="form">
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

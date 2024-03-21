@@ -1,0 +1,31 @@
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <img src="../static/img/small_logo.png" style="cursor: pointer; margin-right: 5px;" alt="" width="50" height="50" style="margin: 0 5px 4px 0"
+         onclick="location.href='http://127.0.0.1:8000/ '">
+    <h5 class="my-0 mr-md-auto font-weight-normal" style="cursor: pointer;"><a href="/index/" class="site_title">Time to vote!</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/create_voting/">Create voting</a>
+        <a class="p-2 text-dark" href="/voting_list/">Show all votings</a>
+    </nav>
+    {% if request.user.is_authenticated %}
+        <div class="center">
+          <select name="sources" id="sources" class="custom-select sources" onclick="location = this.value;">
+            <option value="/profile/{{user}}" ><a href="/profile/{{user}}">{{user}}</a> </option>
+            <option value="/login_exit/" >Exit</option>
+          </select>
+        </div>
+    {% else %}
+    <a class="btn btn-outline-primary" href="/login/">Login / Register</a>
+    {% endif %}
+</div>
+
+<style>
+    .site_title{
+    color: rgb(38, 46, 52);
+    }
+
+    .site_title:hover{
+    text-decoration:none;
+    color: rgb(38, 46, 52);
+    }
+</style>
